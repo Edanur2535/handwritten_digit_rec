@@ -1,0 +1,15 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="zed.get_resolution" />
+          <option value="pyzed.sl" />
+          <option value="open3d" />
+          <option value="cv2.cv2.ROTATE_90_COUNTERCLOCKWISE" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

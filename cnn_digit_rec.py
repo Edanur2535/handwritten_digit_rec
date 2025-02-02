@@ -20,7 +20,7 @@ root="C://Users//Eda ÇINAR//Desktop//cnn_digit",
 
 )
 train_loader=torch.utils.data.DataLoader(train_data,batch_size=64,shuffle=True)
-test_loader=torch.utils.data.DataLoader(test_data,batch_size=64,shuffle=True)
+test_loader=torch.utils.data.DataLoader(test_data,batch_size=64,shuffle=False)
 
 class CNN(nn.Module):
     def __init__(self):
@@ -49,6 +49,7 @@ epochs=10
 for epoch in range(epochs):
     running_loss=0
     for images,labels in train_loader:
+        images ,labels=images.to(device), labels.to(device)
         optimizer.zero_grad()
         output=model(images)
         loss=criterion(output,labels)
@@ -60,8 +61,12 @@ correct=0
 total=0
 with torch.no_grad():
     for images, labels in test_loader:
+        images, labels = images.to(device), labels.to(device)
         output=model(images)
         _, predicted = torch.max(output, 1)
         total+=labels.size(0)
         correct+=(predicted==labels).sum().item()
-        print(f"Test Set Accuracy: {100 * correct / total:.2f}%")
+        print(f"Test Set Accuracy: ",100 * correct / total)
+
+torch.save(model.state_dict(), "cnn_model.pt")
+
